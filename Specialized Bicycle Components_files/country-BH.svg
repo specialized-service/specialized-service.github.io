@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>BH</title>
+	<defs>
+		<style>.cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{fill:#fff;}.cls-4{fill:#ce1126;}</style>
+		<clipPath id="clip-path">
+			<rect id="path-1" class="cls-1" width="20" height="14" rx="2"/>
+		</clipPath>
+	</defs>
+	<g class="cls-2">
+		<path class="cls-3" d="M0,0H20V14H0"/>
+		<path class="cls-4" d="M20,0H5.18L8.4,1.4,5.18,2.8,8.4,4.2,5.18,5.6,8.4,7,5.18,8.4,8.4,9.8,5.18,11.2,8.4,12.6,5.18,14H20"/>
+	</g>
+</svg>
