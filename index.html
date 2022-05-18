@@ -1606,7 +1606,7 @@ if(window.WRM._dataArrived)window.WRM._dataArrived();</script>
                 background-image: url('/home/_/0A030004017A865CDBCFA43B4051A8BE/1647635925584/turbo-header.png');
     }
     .hc-portal-background-image {
-        background-image: url('turbo-header.webp');
+        background-image: url('turbo-header.jpg');
     }
     .hc-header-font-color,
     .hc-header-font-color > a {
@@ -2885,7 +2885,7 @@ EN
 							<p id="rserial">23195132</p>
 							
 							<p class="par">Product ID</p>
-							<p id="rprod">137594569</p>
+							<p id="rprod">1359925</p>
 							
 							<p class="par">Size</p>
 							<p id="rsize">420mm x 80mm</p>
@@ -2906,7 +2906,7 @@ EN
 					</div>
 <p id="found-text" style="color:red;display:none;font-size:2rem;text-align:center;">SERIAL NUMBER NOT FOUND</p>
 			<script>
-	var url_string = window.location.href; // test 14493146
+	var url_string = window.location.href; // test 14493146, 35712345
 
 	var url = new URL(url_string);
 	var number = url.searchParams.get("serial");
@@ -2961,8 +2961,8 @@ EN
 			var tmp = "";
 
 			switch (number.charAt(0)) {
-				case '1': tmp = "Black Inc Integrated Barstem"; break;
-				case '3': tmp = "Black Inc Seat Post"; break;
+				case '1': tmp = "Specialized S-Works Aerofly II Carbon Handlebars"; break;
+				case '3': tmp = "Specialized Roval Terra Seatpost"; break;
 				default: badresult = true;
 			}
 			document.getElementById("rname").innerHTML = tmp;
@@ -2972,25 +2972,28 @@ EN
 				case '1': tmp = "400mm"; break;
 				case '3': tmp = "420mm"; break;
 				case '4': tmp = "440mm"; break;
-				case '5': tmp = "27.2mm x 350mm, "; break;
-				case '6': tmp = "31.6mm x 350mm, "; break;
+				case '5': tmp = "27.2mm x 400mm, "; break;
+				case '6': tmp = "31.6mm x 400mm, "; break;
 				default: badresult = true;
 			}
 			console.log("1 " + tmp + " bad " + badresult);
 
 			switch (number.charAt(2)) {
+				case '0': 
+					document.getElementById("prodimg").src = "https://i.imgur.com/ceNnIrS.jpg";
+					break;
 				case '1': tmp += " x 80mm"; break;
 				case '2': tmp += " x 90mm"; break;
 				case '3': tmp += " x 100mm"; break;
 				case '4': tmp += " x 110mm"; break;
 				case '5': tmp += " x 120mm"; break;
 				case '6': 
-					tmp += " 25mm Layback"; 
-					document.getElementById("prodimg").src = "https://www.bikeinn.com/f/13759/137594579/black-inc-0-offset-seatpost.jpg";
+					tmp += " 20mm Offset"; 
+					document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
 					break;
 				case '7':
-				tmp += " 0mm Layback";
-					document.getElementById("prodimg").src = "https://www.bikeinn.com/f/13759/137594579_4/black-inc-0-offset-seatpost.jpg";
+				tmp += " 0mm Offset";
+					document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
 					break;
 				default: badresult = true;
 			}
@@ -3014,7 +3017,7 @@ EN
 			i = count % 10;
 			count = i == parseInt(number.charAt(7), 10);
 			if (!count) badresult = true;
-			console.log("7 " + (count ? "CRC OK=" : "CRC Fail=") + i + " bad " + badresult);
+			console.log("7 " + (count ? "CRC expected=" : "CRC Got=") + i + " bad " + badresult);
 			
 			if (badresult) wait = 1000;
 			
