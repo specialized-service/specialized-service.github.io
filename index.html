@@ -2798,10 +2798,10 @@ EN
 <div class="grid-x align-center portal__header__content--compact">
 <div class="cell text-center portal__header__content__intro--compact">
 <h1 class="portal__header__content__intro--heading hc-portal-font-color">SERIAL NUMBER LOOKUP</h1>
-<form id="serial-input" action="" onsubmit="modifySearchViaEnter()" method="GET" class="search-bar search-bar--portal">
+<form id="serial-input" action="" onsubmit="modifySearchViaEnter()" method="GET" class="search-bar search-bar--portal" >
 <input type="hidden" id="cql" name="cql" value="">
 <img src="./Specialized Bicycle Components_files/search-magnifier.svg" alt="magnifier" onclick="document.getElementById('serial-input').submit()">
-<input id="serial" placeholder="" quicksearch="true" type="text" autocomplete="off" autofocus="" name="serial" aria-label="Search" value="">
+<input id="serial" placeholder="Enter serial here" quicksearch="true" type="text" autocomplete="off" name="serial" aria-label="Search" value="">
 <input type="hidden" name="s" value="SKB">
 <input type="hidden" name="s" value="IN">
 <input type="hidden" name="s" value="ACC">
@@ -2876,7 +2876,7 @@ EN
 						</div>
 					</div>
 					<div id="results" style="display: none; text-align: center;">
-							<div style="text-align:center"><img id="prodimg" src="https://blackinc.cc/wp-content/uploads/2020/01/BlackIncIntegratedBarstem.jpg" style="width:25%; margin: auto"></div>
+							<div style="text-align:center"><img id="prodimg" src="https://blackinc.cc/wp-content/uploads/2020/01/BlackIncIntegratedBarstem.jpg" style="width:45%; margin: auto"></div>
 							<br>
 							<p class="par">Product Name</p>
 							<p id="rname"></p>
@@ -2962,6 +2962,10 @@ EN
 
 			switch (number.charAt(0)) {
 				case '1': tmp = "Specialized S-Works Aerofly II Carbon Handlebars"; break;
+				case '2': 
+					tmp = "Specialized S-Works Tarmac SL7 Stem";
+					document.getElementById("prodimg").src = "https://i.imgur.com/whL5IOG.png";
+					break;
 				case '3': tmp = "Specialized Roval Terra Seatpost"; break;
 				default: badresult = true;
 			}
@@ -2974,26 +2978,27 @@ EN
 				case '4': tmp = "440mm"; break;
 				case '5': tmp = "27.2mm x 400mm, "; break;
 				case '6': tmp = "31.6mm x 400mm, "; break;
+				case '7': tmp = ""; break;
 				default: badresult = true;
 			}
 			console.log("1 " + tmp + " bad " + badresult);
 
 			switch (number.charAt(2)) {
-				case '0': 
+				case '9': 
 					document.getElementById("prodimg").src = "https://i.imgur.com/ceNnIrS.jpg";
 					break;
-				case '1': tmp += " x 80mm"; break;
-				case '2': tmp += " x 90mm"; break;
-				case '3': tmp += " x 100mm"; break;
-				case '4': tmp += " x 110mm"; break;
-				case '5': tmp += " x 120mm"; break;
+				case '1': tmp += " 80mm"; break;
+				case '2': tmp += " 90mm"; break;
+				case '3': tmp += " 100mm"; break;
+				case '4': tmp += " 110mm"; break;
+				case '5': tmp += " 120mm"; break;
 				case '6': 
-					tmp += " 20mm Offset"; 
-					document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
+					tmp += " 0mm Offset"; 
+					document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
 					break;
 				case '7':
-				tmp += " 0mm Offset";
-					document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
+				tmp += " 20mm Offset";
+					document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
 					break;
 				default: badresult = true;
 			}
@@ -3004,10 +3009,6 @@ EN
 			document.getElementById("rdate").innerHTML = tmp;
 			console.log("345 " + tmp + " bad " + badresult);
 
-			switch (number.charAt(6)) {
-				case '4': break;
-				default: badresult = true;
-			}
 			console.log("6 bad " + badresult);
 		  
 			var i = 0, count = 0;
