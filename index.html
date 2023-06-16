@@ -2879,22 +2879,22 @@ EN
 							<div style="text-align:center"><img id="prodimg" src="https://blackinc.cc/wp-content/uploads/2020/01/BlackIncIntegratedBarstem.jpg" style="width:45%; margin: auto"></div>
 							<br>
 							<p class="par">Product Name</p>
-							<p id="rname"></p>
+							<p id="rname">not set</p>
 							
 							<p class="par">Serial Number</p>
-							<p id="rserial">23195132</p>
+							<p id="rserial">not set</p>
 							
 							<p class="par">Product ID</p>
 							<p id="rprod">1359925</p>
 							
 							<p class="par">Size</p>
-							<p id="rsize">420mm x 80mm</p>
+							<p id="rsize">not set</p>
 
 							<p class="par">Manufacture Origin</p>
 							<p id="rmanu">Taiwan</p>
 							
 							<p class="par">Manufacture Date</p>
-							<p id="rdate">5\2019</p><br><br>
+							<p id="rdate">not set</p><br><br>
 							
 							<div style="text-align: center;">
 								<form action="">
@@ -2960,6 +2960,7 @@ EN
 		  
 			var tmp = "";
 
+			let isHelmet = false;
 			switch (number.charAt(0)) {
 				case '1': tmp = "Specialized S-Works Aerofly II Carbon Handlebars"; break;
 				case '2': 
@@ -2971,44 +2972,87 @@ EN
 					tmp = "Specialized Roval Alpinist Road Integrated Cockpit"; 
 					document.getElementById("prodimg").src = "https://cdn.shopify.com/s/files/1/1342/0697/products/21021-032_CMPNT_ROVAL-ALPINIST-RD-COCKPIT-CARB-BLK-318X400-80MM_HERO_1200x.jpg?v=1599584045";
 					break;
+				case '5':
+					isHelmet = true;
+					break; // helmet
 				default: badresult = true;
 			}
-			document.getElementById("rname").innerHTML = tmp;
-			console.log("0 " + tmp + " bad " + badresult);
+			if (isHelmet) {
+				console.log("isHelmet is true");
+				let imgs = [
+					["https://i.imgur.com/TOEArLv.jpg", "https://i.imgur.com/tSIva4R.jpg", "https://i.imgur.com/BneF0Qt.jpg"], // Evade II
+					[""]
+				];
+				switch (number.charAt(1)) {
+					case '1': document.getElementById("rname").innerHTML = "Specialized S-Works Evade II MIPS Helmet"; break;
+					default: badresult = true;
+				}
 
-			switch (number.charAt(1)) {
-				case '1': tmp = "400mm"; break;
-				case '3': tmp = "420mm"; break;
-				case '4': tmp = "440mm"; break;
-				case '5': tmp = "27.2mm x 400mm, "; break;
-				case '6': tmp = "31.6mm x 400mm, "; break;
-				case '7': tmp = ""; break;
-				default: badresult = true;
+				tmp = "";
+				switch (number.charAt(2)) {
+					case '1': tmp = "White"; break;
+					case '2': tmp = "Black"; break;
+					case '3': tmp = "Red"; break;
+					default: badresult = true;
+				}
+
+				switch (number.charAt(6)) {
+					case '4': tmp += " | Medium"; break;
+					case '5': tmp += " | Large"; break;
+					default: badresult = true;
+				}
+				document.getElementById("rsize").innerHTML = tmp;
+				let product = Number(number.charAt(1)) - 1;
+				let colour = Number(number.charAt(2)) - 1;
+				try {
+					console.log(`prod ${product} col ${colour}`);
+					let src = imgs[product][colour];
+					console.log(`src ${src}`);
+					if ((src === undefined) || (src === "")) {
+						badresult = true;
+					}
+					document.getElementById("prodimg").src = src;
+				} catch (error) {
+					badresult = true;
+				}
+
+			} else {
+				document.getElementById("rname").innerHTML = tmp;
+				console.log("0 " + tmp + " bad " + badresult);
+
+				switch (number.charAt(1)) {
+					case '1': tmp = "400mm"; break;
+					case '3': tmp = "420mm"; break;
+					case '4': tmp = "440mm"; break;
+					case '5': tmp = "27.2mm x 400mm, "; break;
+					case '6': tmp = "31.6mm x 400mm, "; break;
+					case '7': tmp = ""; break;
+					default: badresult = true;
+				}
+				console.log("1 " + tmp + " bad " + badresult);
+
+				switch (number.charAt(2)) {
+					case '9':
+						document.getElementById("prodimg").src = "https://i.imgur.com/ceNnIrS.jpg";
+						break;
+					case '1': tmp += " 80mm"; break;
+					case '2': tmp += " 90mm"; break;
+					case '3': tmp += " 100mm"; break;
+					case '4': tmp += " 110mm"; break;
+					case '5': tmp += " 120mm"; break;
+					case '6':
+						tmp += " 0mm Offset";
+						document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
+						break;
+					case '7':
+					tmp += " 20mm Offset";
+						document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
+						break;
+					default: badresult = true;
+				}
+				document.getElementById("rsize").innerHTML = tmp;
+				console.log("2 " + tmp + " bad " + badresult);
 			}
-			console.log("1 " + tmp + " bad " + badresult);
-
-			switch (number.charAt(2)) {
-				case '9': 
-					document.getElementById("prodimg").src = "https://i.imgur.com/ceNnIrS.jpg";
-					break;
-				case '1': tmp += " 80mm"; break;
-				case '2': tmp += " 90mm"; break;
-				case '3': tmp += " 100mm"; break;
-				case '4': tmp += " 110mm"; break;
-				case '5': tmp += " 120mm"; break;
-				case '6': 
-					tmp += " 0mm Offset"; 
-					document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
-					break;
-				case '7':
-				tmp += " 20mm Offset";
-					document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
-					break;
-				default: badresult = true;
-			}
-			document.getElementById("rsize").innerHTML = tmp;
-			console.log("2 " + tmp + " bad " + badresult);
-
 			tmp = number.charAt(4) + "\\20" + number.charAt(5) + number.charAt(3);
 			document.getElementById("rdate").innerHTML = tmp;
 			console.log("345 " + tmp + " bad " + badresult);
@@ -3039,7 +3083,7 @@ EN
 
 </script>
 <h2 id="Howcanwehelp?-RESOURCES">FIND NUMBER</h2>
-<img src="https://i.imgur.com/QKi5ZPj.png" style="width:50%;display: block;margin: 0 auto;">
+<img src="https://i.imgur.com/QKi5ZPj.png" style="width:75%;display: block;margin: 0 auto;"><br>
 <h2 id="Howcanwehelp?-RESOURCES">RESOURCES</h2><div class="sectionColumnWrapper conf-macro output-block" data-hasbody="true" data-macro-name="section" style="padding: 0px; margin: 0px;"><div class="sectionMacro"><div class="sectionMacroRow"><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li>
 <a data-macro-name="geo-sensitive-link" href="https://support.specialized.com/home/gbr/en/ordering-shipping-returns" class="conf-macro output-inline conf-macro output-inline" data-hasbody="false">Ordering / Shipping / Returns</a></li><li>
 <a data-macro-name="geo-sensitive-link" href="https://support.specialized.com/home/gbr/en/warranty-policies" class="conf-macro output-inline conf-macro output-inline" data-hasbody="false">Warranty</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li><a rel="nofollow" href="https://support.specialized.com/account" target="_self">My Account</a></li><li><a rel="nofollow" href="https://support.specialized.com/registration" target="_self">Bike / Roval Registration</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li><a rel="nofollow" href="https://support.specialized.com/general-bike-faqs" target="_self">General Bike FAQs</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbo" target="_self">All About Turbo</a></li></ul></div></div></div></div><h2 id="Howcanwehelp?-RIDERCONNECTIVITY">RIDER CONNECTIVITY</h2><div class="sectionColumnWrapper conf-macro output-block" data-hasbody="true" data-macro-name="section" style="padding: 0px; margin: 0px;"><div class="sectionMacro"><div class="sectionMacroRow"><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li><a rel="nofollow" href="https://support.specialized.com/ride" target="_self">Ride App</a></li><li><a rel="nofollow" href="https://support.specialized.com/missioncontrol" target="_self">Mission Control App</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li><a rel="nofollow" href="https://support.specialized.com/retul" target="_self">Retül</a></li><li><a rel="nofollow" href="https://support.specialized.com/angi" target="_self">ANGi</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><ul><li><a rel="nofollow" href="https://support.specialized.com/other/en/power-cranks" target="_self">Power Cranks</a></li><li><a rel="nofollow" href="https://support.specialized.com/other/en/suspension-calculator/suspension-calculator-app" target="_self">Suspension Calculator</a></li></ul></div></div></div></div><h2 id="Howcanwehelp?-BIKES">BIKES</h2><div class="sectionColumnWrapper conf-macro output-block" data-hasbody="true" data-macro-name="section" style="padding: 0px; margin: 0px;"><div class="sectionMacro"><div class="sectionMacroRow"><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><h3 id="Howcanwehelp?-ROAD">ROAD</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/aethos" target="_self">Aethos</a></li><li><a rel="nofollow" href="https://support.specialized.com/allez" target="_self">Allez</a></li><li><a rel="nofollow" href="https://support.specialized.com/allez-sprint" target="_self">Allez&nbsp;Sprint</a></li><li><a rel="nofollow" href="https://support.specialized.com/crux" target="_self">Crux</a></li><li><a rel="nofollow" href="https://support.specialized.com/diverge" target="_self">Diverge</a></li><li><a rel="nofollow" href="https://support.specialized.com/roubaix" target="_self">Roubaix</a></li><li><a rel="nofollow" href="https://support.specialized.com/shiv" target="_self">Shiv</a></li><li><a rel="nofollow" href="https://support.specialized.com/shivtt" target="_self">Shiv TT</a></li><li><a rel="nofollow" href="https://support.specialized.com/tarmac" target="_self">Tarmac</a></li><li><a rel="nofollow" href="https://support.specialized.com/venge" target="_self">Venge</a></li></ul><h3 id="Howcanwehelp?-ACTIVE">ACTIVE</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/crossroads" target="_self">Crossroads</a></li><li><a rel="nofollow" href="https://support.specialized.com/roll" target="_self">Roll</a></li><li><a rel="nofollow" href="https://support.specialized.com/sirrus" target="_self">Sirrus</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><h3 id="Howcanwehelp?-MOUNTAIN">MOUNTAIN</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/chisel" target="_self">Chisel</a></li><li><a rel="nofollow" href="https://support.specialized.com/demo" target="_self">Demo</a></li><li><a rel="nofollow" href="https://support.specialized.com/enduro" target="_self">Enduro</a></li><li><a rel="nofollow" href="https://support.specialized.com/epic" target="_self">Epic</a></li><li><a rel="nofollow" href="https://support.specialized.com/fatboy" target="_self">Fatboy</a></li><li><a rel="nofollow" href="https://support.specialized.com/fuse" target="_self">Fuse</a></li><li><a rel="nofollow" href="https://support.specialized.com/rockhopper" target="_self">Rockhopper</a></li><li><a rel="nofollow" href="https://support.specialized.com/stat" target="_self">Status</a></li><li><a rel="nofollow" href="https://support.specialized.com/stumpjumper" target="_self">Stumpjumper</a></li><li><a rel="nofollow" href="https://support.specialized.com/stumpjumper-evo" target="_self">Stumpjumper EVO</a></li></ul><h3 id="Howcanwehelp?-KIDS">KIDS</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/hotrock" target="_self">Hotrock</a></li><li><a rel="nofollow" href="https://support.specialized.com/hotwalk-carbon" target="_self">Hotwalk Carbon</a></li><li><a rel="nofollow" href="https://support.specialized.com/jett" target="_self">Jett</a></li><li><a rel="nofollow" href="https://support.specialized.com/riprock" target="_self">Riprock</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><h3 id="Howcanwehelp?-ELECTRIC">ELECTRIC</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/turbocomo" target="_self">Turbo Como</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbo-como-sl" target="_self">Turbo Como SL</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbocreosl" target="_self">Turbo Creo SL</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbokenevo" target="_self">Turbo Kenevo</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbo-kenevo-sl" target="_self">Turbo Kenevo SL</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbolevo" target="_self">Turbo Levo</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbolevosl" target="_self">Turbo Levo SL</a></li><li><a rel="nofollow" href="https://support.specialized.com/tero" target="_self">Turbo Tero</a></li><li><a rel="nofollow" href="https://support.specialized.com/turbovado" target="_self">Turbo Vado</a></li><li><a rel="nofollow" href="https://support.specialized.com/vado-sl" target="_self">Turbo Vado SL</a></li></ul><h3 id="Howcanwehelp?-ARCHIVE">ARCHIVE</h3><p>For models not listed or older bikes, please see our <u><a rel="nofollow" class="external-link" href="https://www.specialized.com/search?q=%3Arelevance%3Aarchived%3Atrue%3AisBike%3Atrue" target="blank">bike archive</a></u></p></div></div></div></div><h2 id="Howcanwehelp?-EQUIPMENT">EQUIPMENT</h2><div class="sectionColumnWrapper conf-macro output-block" data-hasbody="true" data-macro-name="section" style="padding: 0px; margin: 0px;"><div class="sectionMacro"><div class="sectionMacroRow"><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><h3 id="Howcanwehelp?-GEAR">GEAR</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/apparel" target="_self">Apparel</a></li><li><a rel="nofollow" href="https://support.specialized.com/helmets" target="_self">Helmets</a></li><li><a rel="nofollow" href="https://support.specialized.com/shoes" target="_self">Shoes</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><h3 id="Howcanwehelp?-COMPONENTS">COMPONENTS</h3><ul><li><a rel="nofollow" href="https://support.specialized.com/components/en/roval-components" target="_self">Roval Components</a></li><li><a rel="nofollow" href="https://support.specialized.com/computers" target="_self">Computers</a></li><li><a rel="nofollow" href="https://support.specialized.com/other/en/power-cranks" target="_self">Power Meters</a></li><li><a rel="nofollow" href="https://support.specialized.com/components/en/saddles" target="_self">Saddles</a></li><li><a rel="nofollow" href="https://support.specialized.com/tires" target="_self">Tires</a></li><li><a rel="nofollow" href="https://support.specialized.com/wheels" target="_self">Wheels</a></li></ul></div><div class="columnMacro conf-macro output-block" style="width:33%;min-width:33%;max-width:33%;" data-hasbody="true" data-macro-name="column"><p><br></p></div></div></div></div><div class="sectionColumnWrapper conf-macro output-block" data-hasbody="true" data-macro-name="section" style="padding: 0px; margin: 0px;"><div class="sectionMacro"><div class="sectionMacroRow"><div class="columnMacro conf-macro output-block" data-hasbody="true" data-macro-name="column"><h3 style="text-align: center;" id="Howcanwehelp?-Can&#39;tfindwhatyou&#39;relookingfor?">Can't find what you're looking for?</h3><p style="text-align: center;">We'll help you find the answer or connect with an advisor.</p><p style="text-align: center;"><a rel="nofollow" class="external-link" href="https://www.specialized.com/ridercareform" target="blank">CONTACT US</a></p></div></div></div></div>
