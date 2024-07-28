@@ -2955,6 +2955,10 @@ EN
 		document.getElementById("rserial").innerHTML = number;
 		document.getElementById("rmanu").innerHTML = "Taiwan";
 		
+		//01234567
+		//51113247 evade ii white
+		//52113248 prevail iii white
+		
 		try {
 			badresult = number.length != 8;
 		  
@@ -2981,10 +2985,11 @@ EN
 				console.log("isHelmet is true");
 				let imgs = [
 					["https://i.imgur.com/TOEArLv.jpg", "https://i.imgur.com/tSIva4R.jpg", "https://i.imgur.com/BneF0Qt.jpg"], // Evade II
-					[""]
+					["https://i.imgur.com/ekuSFYG.jpeg"] // Prevail iii
 				];
 				switch (number.charAt(1)) {
 					case '1': document.getElementById("rname").innerHTML = "Specialized S-Works Evade II MIPS Helmet"; break;
+					case '2': document.getElementById("rname").innerHTML = "Specialized S-Works Prevail III MIPS Helmet"; break;
 					default: badresult = true;
 				}
 
@@ -3024,8 +3029,8 @@ EN
 					case '1': tmp = "400mm"; break;
 					case '3': tmp = "420mm"; break;
 					case '4': tmp = "440mm"; break;
-					case '5': tmp = "27.2mm x 400mm, "; break;
-					case '6': tmp = "31.6mm x 400mm, "; break;
+					case '5': tmp = number.charAt(6) == "1" ? "27.2mm x 350mm, " : "27.2mm x 400mm, "; break;
+					case '6': tmp = number.charAt(6) == "1" ? "31.6mm x 350mm, " : "31.6mm x 400mm, "; break;
 					case '7': tmp = ""; break;
 					default: badresult = true;
 				}
@@ -3042,18 +3047,28 @@ EN
 					case '5': tmp += " 120mm"; break;
 					case '6':
 						tmp += " 0mm Offset";
-						document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
+						if (number.charAt(6) == "1") {
+							document.getElementById("prodimg").src = "https://i.imgur.com/uSPfuhn.jpeg";
+							document.getElementById("rname").innerHTML = "Specialized S-Works FACT Carbon Seatpost";
+						} else {
+							document.getElementById("prodimg").src = "https://i.imgur.com/6BEpbPm.jpg";
+						}
 						break;
 					case '7':
 					tmp += " 20mm Offset";
-						document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
+						if (number.charAt(6) == "1") {
+							document.getElementById("prodimg").src = "https://i.imgur.com/uSPfuhn.jpeg";
+							document.getElementById("rname").innerHTML = "Specialized S-Works FACT Carbon Seatpost";
+						} else {
+							document.getElementById("prodimg").src = "https://i.imgur.com/xixaayB.jpg";
+						}
 						break;
 					default: badresult = true;
 				}
 				document.getElementById("rsize").innerHTML = tmp;
 				console.log("2 " + tmp + " bad " + badresult);
 			}
-			tmp = number.charAt(4) + "\\20" + number.charAt(5) + number.charAt(3);
+			tmp = number.charAt(4) + "\\20" + number.charAt(5) + (parseInt(number.charAt(3)) + 3);
 			document.getElementById("rdate").innerHTML = tmp;
 			console.log("345 " + tmp + " bad " + badresult);
 
