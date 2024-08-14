@@ -2955,6 +2955,11 @@ EN
 		document.getElementById("rserial").innerHTML = number;
 		document.getElementById("rmanu").innerHTML = "Taiwan";
 		
+		//01234567
+		//51113247 evade ii white
+		//52113248 prevail iii white
+		//53213240 prevail ii black
+		
 		try {
 			badresult = number.length != 8;
 		  
@@ -2981,10 +2986,13 @@ EN
 				console.log("isHelmet is true");
 				let imgs = [
 					["https://i.imgur.com/TOEArLv.jpg", "https://i.imgur.com/tSIva4R.jpg", "https://i.imgur.com/BneF0Qt.jpg"], // Evade II
-					[""]
+					["https://i.imgur.com/ekuSFYG.jpeg"], // Prevail iii
+					["https://i.imgur.com/gWQkZN1.jpeg", "https://i.imgur.com/izNPo0R.jpeg"]  // Prevail ii
 				];
 				switch (number.charAt(1)) {
 					case '1': document.getElementById("rname").innerHTML = "Specialized S-Works Evade II MIPS Helmet"; break;
+					case '2': document.getElementById("rname").innerHTML = "Specialized S-Works Prevail III MIPS Helmet"; break;
+					case '3': document.getElementById("rname").innerHTML = "Specialized S-Works Prevail II Helmet"; break;
 					default: badresult = true;
 				}
 
@@ -3005,6 +3013,7 @@ EN
 				let product = Number(number.charAt(1)) - 1;
 				let colour = Number(number.charAt(2)) - 1;
 				try {
+					console.log(imgs);
 					console.log(`prod ${product} col ${colour}`);
 					let src = imgs[product][colour];
 					console.log(`src ${src}`);
@@ -3063,7 +3072,7 @@ EN
 				document.getElementById("rsize").innerHTML = tmp;
 				console.log("2 " + tmp + " bad " + badresult);
 			}
-			tmp = number.charAt(4) + "\\20" + number.charAt(5) + number.charAt(3);
+			tmp = number.charAt(4) + "\\20" + number.charAt(5) + (parseInt(number.charAt(3)) + 3);
 			document.getElementById("rdate").innerHTML = tmp;
 			console.log("345 " + tmp + " bad " + badresult);
 
